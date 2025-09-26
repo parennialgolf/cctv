@@ -119,7 +119,7 @@ async function serveStaticOrIndex(req: Request, path: string): Promise<Response>
 }
 
 const server = Bun.serve({
-  port: Number(Bun.env.PORT || 3000),
+  port: Number(Bun.env.PORT ?? 3000),
   async fetch(req: Request): Promise<Response> {
     const url = new URL(req.url);
     const pathname = url.pathname;
