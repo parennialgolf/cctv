@@ -94,26 +94,6 @@
     });
   </script>
   <script src="auth.js"></script>
-  <script>
-    // iOS Safari iframe fallback to <img>
-    (function() {
-      const ua = navigator.userAgent;
-      const isIOS = /iPad|iPhone|iPod/.test(ua);
-      const isSafari = /^((?!chrome|android).)*safari/i.test(ua);
-      if (!(isIOS && isSafari)) return;
-      const frames = Array.from(document.querySelectorAll('iframe'));
-      frames.forEach((f) => {
-        const src = f.getAttribute('src');
-        if (!src) return;
-        const img = document.createElement('img');
-        img.src = src;
-        img.style.width = '100%';
-        img.style.height = '100%';
-        img.style.objectFit = 'contain';
-        f.replaceWith(img);
-      });
-    })();
-  </script>
 </body>
 
 </html>
