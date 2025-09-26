@@ -45,27 +45,30 @@ dokku letsencrypt:enable cctv-system  # For SSL
 
 ## Local Development
 
-### Using Docker Compose
+### Run with Bun (recommended for local dev)
 ```bash
-# Clone the repository
-git clone https://github.com/your-username/cctv-system.git
-cd cctv-system
+# Install Bun if needed (see https://bun.sh)
+# macOS (brew): brew install oven-sh/bun/bun
 
-# Set environment variables (optional - will use defaults)
+# Set environment variables (optional)
 export CCTV_ADMIN_PASSWORD=admin123
 export CCTV_VIEWER_PASSWORD=viewer123
 
-# Run with Docker Compose
-docker-compose up -d
+# Start the server (TypeScript)
+bun run server.ts
 
-# Access at http://localhost
+# Access at http://localhost:3000
 ```
 
-### Direct File Serving
+### Run with Docker
 ```bash
-# Serve files with any static server
-python -m http.server 8000
-# Access at http://localhost:8000
+docker build -t cctv-bun .
+docker run -p 3000:3000 \
+  -e CCTV_ADMIN_PASSWORD=admin123 \
+  -e CCTV_VIEWER_PASSWORD=viewer123 \
+  cctv-bun
+
+# Access at http://localhost:3000
 ```
 
 ## Configuration
@@ -105,8 +108,9 @@ The system expects CCTV streams at these URLs:
 
 - ✅ Tab-based sessions (logout on browser close)
 - ✅ Environment variable password storage
+- ✅ HTTP-only cookie sessions (server-backed)
 - ✅ No hardcoded credentials in source code
-- ✅ Session storage (not persistent cookies)
+- ✅ Local session mirror only for UI hints
 - ✅ HTTPS-ready configuration
 - ✅ Security headers in nginx config
 

@@ -114,14 +114,16 @@
     // Initialize Lincoln Park section as expanded
     document.getElementById('lincoln-park-arrow').classList.add('expanded');
     
-    // Display current user
-    const currentUser = getCurrentUser();
-    if (currentUser) {
-      document.getElementById('userInfo').textContent = `Welcome, ${currentUser}`;
-    }
+    // Display current user (after auth sync)
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUser = getCurrentUser();
+      if (currentUser) {
+        document.getElementById('userInfo').textContent = `Welcome, ${currentUser}`;
+      }
+    });
   </script>
-  
   <script src="auth.js"></script>
 </body>
 
 </html>
+
