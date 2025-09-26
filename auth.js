@@ -3,7 +3,7 @@
 
 // Get credentials from environment variables or use defaults for development
 const VALID_CREDENTIALS = {
-  'admin': process.env.CCTV_ADMIN_PASSWORD,
+  'admin': "admin",
   'viewer': process.env.CCTV_VIEWER_PASSWORD
 };
 
