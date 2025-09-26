@@ -42,5 +42,4 @@ node_modules/
 *.tmp
 *.temp
 
-# Auth file (keep template, ignore generated)
-auth.js
+# Keep auth.js - it needs to be in the repository

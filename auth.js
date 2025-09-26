@@ -3,17 +3,17 @@
 
 // Get credentials from environment variables or use defaults for development
 const VALID_CREDENTIALS = {
-  'admin': '${CCTV_ADMIN_PASSWORD}' || 'cctv2025',
-  'viewer': '${CCTV_VIEWER_PASSWORD}' || 'cctv2025'
+  'admin': process.env.CCTV_ADMIN_PASSWORD,
+  'viewer': process.env.CCTV_VIEWER_PASSWORD
 };
 
 // Additional users can be added via environment variables
-if ('${CCTV_MANAGER_PASSWORD}' && '${CCTV_MANAGER_PASSWORD}' !== '') {
-  VALID_CREDENTIALS['manager'] = '${CCTV_MANAGER_PASSWORD}';
+if (process.env.CCTV_MANAGER_PASSWORD) {
+  VALID_CREDENTIALS['manager'] = process.env.CCTV_MANAGER_PASSWORD;
 }
 
-if ('${CCTV_GUEST_PASSWORD}' && '${CCTV_GUEST_PASSWORD}' !== '') {
-  VALID_CREDENTIALS['guest'] = '${CCTV_GUEST_PASSWORD}';
+if (process.env.CCTV_GUEST_PASSWORD) {
+  VALID_CREDENTIALS['guest'] = process.env.CCTV_GUEST_PASSWORD;
 }
 
 // Session management - using sessionStorage for tab-based sessions
