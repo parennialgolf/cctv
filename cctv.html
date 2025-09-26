@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARennial Golf CCTV Feeds</title>
+  <link rel="icon" type="image/png" href="logo_mark_gradient_sized.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="main-page">
+  <div class="header">
+    <h1>CCTV Feeds</h1>
+    <div class="user-info" id="userInfo"></div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+    <div class="nav-links">
+      <a href="all-feeds.html">All Feeds</a>
+    </div>
+  </div>
+
+  <!-- Lincoln Park Section -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection('lincoln-park')">
+      <span>Lincoln Park CCTV Feeds</span>
+      <span class="arrow" id="lincoln-park-arrow">▶</span>
+    </div>
+    <div class="feeds-container expanded" id="lincoln-park-feeds">
+      <div class="feed-item">
+        <div class="feed-label">Bay 1</div>
+        <iframe src="http://pgl-1:8889/bay_1/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">Bay 2</div>
+        <iframe src="http://pgl-1:8889/bay_2/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">Bay 3</div>
+        <iframe src="http://pgl-1:8889/bay_3/" allow="autoplay; fullscreen"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- West Loop Section -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection('west-loop')">
+      <span>West Loop CCTV Feeds</span>
+      <span class="arrow" id="west-loop-arrow">▶</span>
+    </div>
+    <div class="feeds-container" id="west-loop-feeds">
+      <div class="feed-item">
+        <div class="feed-label">West Loop - Bay 1</div>
+        <iframe src="http://pgl-2:8889/bay_1/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">West Loop - Bay 2</div>
+        <iframe src="http://pgl-2:8889/bay_2/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">West Loop - Bay 3</div>
+        <iframe src="http://pgl-2:8889/bay_3/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">West Loop - Bay 4</div>
+        <iframe src="http://pgl-2:8889/bay_4/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">West Loop - Bay 5</div>
+        <iframe src="http://pgl-2:8889/bay_5/" allow="autoplay; fullscreen"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <!-- Wicker Park Section -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection('wicker-park')">
+      <span>Wicker Park CCTV Feeds</span>
+      <span class="arrow" id="wicker-park-arrow">▶</span>
+    </div>
+    <div class="feeds-container" id="wicker-park-feeds">
+      <div class="feed-item">
+        <div class="feed-label">Wicker Park - Bay 1</div>
+        <iframe src="http://pgl-3:8889/bay_1/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">Wicker Park - Bay 2</div>
+        <iframe src="http://pgl-3:8889/bay_2/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">Wicker Park - Bay 3</div>
+        <iframe src="http://pgl-3:8889/bay_3/" allow="autoplay; fullscreen"></iframe>
+      </div>
+      <div class="feed-item">
+        <div class="feed-label">Wicker Park - Bay 4</div>
+        <iframe src="http://pgl-3:8889/bay_4/" allow="autoplay; fullscreen"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleSection(sectionId) {
+      const feedsContainer = document.getElementById(sectionId + '-feeds');
+      const arrow = document.getElementById(sectionId + '-arrow');
+
+      if (feedsContainer.classList.contains('expanded')) {
+        feedsContainer.classList.remove('expanded');
+        arrow.classList.remove('expanded');
+      } else {
+        feedsContainer.classList.add('expanded');
+        arrow.classList.add('expanded');
+      }
+    }
+
+    // Initialize Lincoln Park section as expanded
+    document.getElementById('lincoln-park-arrow').classList.add('expanded');
+    
+    // Display current user
+    const currentUser = getCurrentUser();
+    if (currentUser) {
+      document.getElementById('userInfo').textContent = `Welcome, ${currentUser}`;
+    }
+  </script>
+  
+  <script src="auth.js"></script>
+</body>
+
+</html>

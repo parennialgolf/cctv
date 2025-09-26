@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PARennial Golf CCTV</title>
+  <link rel="icon" type="image/png" href="logo_mark_gradient_sized.png">
+  <script>
+    // Check authentication and redirect
+    function checkAuthAndRedirect() {
+      const session = sessionStorage.getItem('cctv_auth_session');
+      
+      if (session) {
+        try {
+          const sessionData = JSON.parse(session);
+          
+          // Check if session has valid username
+          if (sessionData.username) {
+            // Valid session, redirect to main page
+            window.location.href = 'cctv.html';
+            return;
+          }
+        } catch (e) {
+          // Invalid session data, remove it
+          sessionStorage.removeItem('cctv_auth_session');
+        }
+      }
+      
+      // No valid session, redirect to login
+      window.location.href = 'login.html';
+    }
+    
+    // Run check immediately
+    checkAuthAndRedirect();
+  </script>
+</head>
+
+<body>
+  <div style="background: #111; color: #fff; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: Arial, sans-serif;">
+    <p>Checking authentication...</p>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8889:80"
+    environment:
+      # Set these environment variables in your Dokku app
+      - CCTV_ADMIN_PASSWORD=${CCTV_ADMIN_PASSWORD:-cctv2025}
+      - CCTV_VIEWER_PASSWORD=${CCTV_VIEWER_PASSWORD:-cctv2025}
+      - CCTV_MANAGER_PASSWORD=${CCTV_MANAGER_PASSWORD:-}
+      - CCTV_GUEST_PASSWORD=${CCTV_GUEST_PASSWORD:-}
+    restart: unless-stopped
+    volumes:
+      - ./:/usr/share/nginx/html:ro
+    labels:
+      - "com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy"

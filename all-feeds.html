@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All CCTV Feeds - PARennial Golf</title>
+  <link rel="icon" type="image/png" href="logo_mark_gradient_sized.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="grid-page">
+  <div class="header">
+    <div class="nav-links">
+      <a href="cctv.html">←</a>
+    </div>
+    <h1>All CCTV Feeds</h1>
+    <div class="user-info" id="userInfo"></div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </div>
+
+  <div class="grid-container">
+    <!-- Lincoln Park Feeds -->
+    <div class="feed-item">
+      <div class="feed-label">Lincoln Park - Bay 1</div>
+      <iframe src="http://pgl-1:8889/bay_1/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">Lincoln Park - Bay 2</div>
+      <iframe src="http://pgl-1:8889/bay_2/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">Lincoln Park - Bay 3</div>
+      <iframe src="http://pgl-1:8889/bay_3/" allow="autoplay; fullscreen"></iframe>
+    </div>
+
+    <!-- West Loop Feeds -->
+    <div class="feed-item">
+      <div class="feed-label">West Loop - Bay 1</div>
+      <iframe src="http://pgl-2:8889/bay_1/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">West Loop - Bay 2</div>
+      <iframe src="http://pgl-2:8889/bay_2/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">West Loop - Bay 3</div>
+      <iframe src="http://pgl-2:8889/bay_3/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">West Loop - Bay 4</div>
+      <iframe src="http://pgl-2:8889/bay_4/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">West Loop - Bay 5</div>
+      <iframe src="http://pgl-2:8889/bay_5/" allow="autoplay; fullscreen"></iframe>
+    </div>
+
+    <!-- Wicker Park Feeds -->
+    <div class="feed-item">
+      <div class="feed-label">Wicker Park - Bay 1</div>
+      <iframe src="http://pgl-3:8889/bay_1/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">Wicker Park - Bay 2</div>
+      <iframe src="http://pgl-3:8889/bay_2/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">Wicker Park - Bay 3</div>
+      <iframe src="http://pgl-3:8889/bay_3/" allow="autoplay; fullscreen"></iframe>
+    </div>
+    
+    <div class="feed-item">
+      <div class="feed-label">Wicker Park - Bay 4</div>
+      <iframe src="http://pgl-3:8889/bay_4/" allow="autoplay; fullscreen"></iframe>
+    </div>
+  </div>
+
+  <script>
+    // Display current user
+    document.addEventListener('DOMContentLoaded', function() {
+      const currentUser = getCurrentUser();
+      if (currentUser) {
+        document.getElementById('userInfo').textContent = `Welcome, ${currentUser}`;
+      }
+    });
+  </script>
+  
+  <script src="auth.js"></script>
+</body>
+
+</html>
