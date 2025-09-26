@@ -94,61 +94,6 @@
     });
   </script>
   <script src="auth.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@1"></script>
-  <script>
-    (async function() {
-      const frames = Array.from(document.querySelectorAll('iframe'));
-      const candidates = ['index.m3u8', 'stream.m3u8', 'hls.m3u8', 'playlist.m3u8'];
-      const canNativeHls = !!document.createElement('video').canPlayType('application/vnd.apple.mpegURL');
-
-      function ensureSlash(u) { return u.endsWith('/') ? u : (u + '/'); }
-      function toProxyPrefix(src) {
-        try {
-          const u = new URL(src, window.location.origin);
-          if (u.host && u.host !== window.location.host) {
-            return `/proxy/${u.host}${u.pathname}`;
-          }
-          return u.pathname;
-        } catch { return src; }
-      }
-      async function urlOk(u) {
-        try { const r = await fetch(u, { method: 'HEAD' }); return r.ok; } catch { return false; }
-      }
-
-      for (const f of frames) {
-        const baseSrc = f.getAttribute('src');
-        if (!baseSrc) continue;
-        const prefix = ensureSlash(toProxyPrefix(baseSrc));
-        let playlist = '';
-        for (const suf of candidates) {
-          const testUrl = prefix + suf;
-          // eslint-disable-next-line no-await-in-loop
-          if (await urlOk(testUrl)) { playlist = testUrl; break; }
-        }
-        if (!playlist) continue;
-
-        const video = document.createElement('video');
-        video.muted = true;
-        video.autoplay = true;
-        video.playsInline = true;
-        video.controls = true;
-        video.style.width = '100%';
-        video.style.height = '100%';
-        video.style.background = '#000';
-
-        if (canNativeHls) {
-          video.src = playlist;
-        } else if (window.Hls && window.Hls.isSupported()) {
-          const hls = new window.Hls();
-          hls.loadSource(playlist);
-          hls.attachMedia(video);
-        } else {
-          continue;
-        }
-        f.parentNode.replaceChild(video, f);
-      }
-    })();
-  </script>
 </body>
 
 </html>
