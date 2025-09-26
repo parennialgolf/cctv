@@ -3,18 +3,8 @@
 
 // Get credentials from environment variables or use defaults for development
 const VALID_CREDENTIALS = {
-  'admin': "admin",
-  'viewer': process.env.CCTV_VIEWER_PASSWORD
+  'admin': "admin"
 };
-
-// Additional users can be added via environment variables
-if (process.env.CCTV_MANAGER_PASSWORD) {
-  VALID_CREDENTIALS['manager'] = process.env.CCTV_MANAGER_PASSWORD;
-}
-
-if (process.env.CCTV_GUEST_PASSWORD) {
-  VALID_CREDENTIALS['guest'] = process.env.CCTV_GUEST_PASSWORD;
-}
 
 // Session management - using sessionStorage for tab-based sessions
 const AUTH_KEY = 'cctv_auth_session';
